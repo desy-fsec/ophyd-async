@@ -1,6 +1,7 @@
 import asyncio
 from typing import Awaitable, Callable, Dict, Iterable, List, Optional, Type, TypeVar
 
+from tango import EventData
 import numpy as np
 from bluesky.protocols import Reading
 
