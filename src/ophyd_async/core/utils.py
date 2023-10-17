@@ -1,5 +1,5 @@
 import asyncio
-from typing import Awaitable, Callable, Dict, Iterable, List, Optional, Type, TypeVar
+from typing import Awaitable, Callable, Dict, Iterable, List, Optional, Type, TypeVar, Any
 
 from tango import EventData
 import numpy as np
@@ -69,7 +69,7 @@ def get_dtype(typ: Type) -> Optional[np.dtype]:
     return None
 
 
-def get_unique(values: Dict[str, T], types: str) -> T:
+def get_unique(values: Dict[str, Any], types: str) -> T:
     """If all values are the same, return that value, otherwise return TypeError
 
     >>> get_unique({"a": 1, "b": 1}, "integers")
