@@ -99,3 +99,7 @@ async def merge_gathered_dicts(
     for result in await asyncio.gather(*coros):
         ret.update(result)
     return ret
+
+
+async def gather_list(coros: Iterable[Awaitable[T]]) -> List[T]:
+    return await asyncio.gather(*coros)

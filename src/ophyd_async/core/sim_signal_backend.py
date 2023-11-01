@@ -11,8 +11,8 @@ from typing import Any, Dict, Generic, Optional, Type, Union, cast, get_origin
 
 from bluesky.protocols import Descriptor, Dtype, Reading
 
-from ...utils import ReadingValueCallback, T, get_dtype
 from .signal_backend import SignalBackend
+from .utils import ReadingValueCallback, T, get_dtype
 
 primitive_dtypes: Dict[type, Dtype] = {
     str: "string",
@@ -160,6 +160,10 @@ class SimSignalBackend(SignalBackend[T]):
 
     async def get_value(self) -> T:
         return self.converter.value(self._value)
+
+    async def get_setpoint(self) -> T:
+        """For a simulated backend, the setpoint and readback values are the same."""
+        return await self.get_value()
 
     def set_callback(self, callback: Optional[ReadingValueCallback[T]]) -> None:
         if callback:

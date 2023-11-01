@@ -194,7 +194,7 @@ def make_converter(datatype: Optional[Type], values: Dict[str, Any]) -> PvaConve
             enum_class = datatype
         else:
             enum_class = Enum(  # type: ignore
-                "GeneratedChoices", {x: x for x in pv_choices}, type=str
+                "GeneratedChoices", {x or "_": x for x in pv_choices}, type=str
             )
         return PvaEnumConverter(enum_class)
     elif "NTScalar" in typeid:
@@ -280,6 +280,10 @@ class PvaSignalBackend(SignalBackend[T]):
     async def get_value(self) -> T:
         request: str = self._pva_request_string(self.converter.value_fields())
         value = await self.ctxt.get(self.read_pv, request=request)
+        return self.converter.value(value)
+
+    async def get_setpoint(self) -> T:
+        value = await self.ctxt.get(self.write_pv, "field(value)")
         return self.converter.value(value)
 
     def set_callback(self, callback: Optional[ReadingValueCallback[T]]) -> None:

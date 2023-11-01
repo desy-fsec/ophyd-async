@@ -3,7 +3,7 @@ from typing import Generic, Optional, Type
 
 from bluesky.protocols import Descriptor, Reading
 
-from ...utils import ReadingValueCallback, T
+from .utils import ReadingValueCallback, T
 
 
 class SignalBackend(Generic[T]):
@@ -34,6 +34,10 @@ class SignalBackend(Generic[T]):
     @abstractmethod
     async def get_value(self) -> T:
         """The current value"""
+
+    @abstractmethod
+    async def get_setpoint(self) -> T:
+        """The point that a signal was requested to move to."""
 
     @abstractmethod
     def set_callback(self, callback: Optional[ReadingValueCallback[T]]) -> None:
