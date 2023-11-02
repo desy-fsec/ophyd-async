@@ -19,7 +19,6 @@ class Device(HasName):
     parent: Optional[Device] = None
 
     def __init__(self, name: str = "") -> None:
-        print("Was here")
         self.set_name(name)
 
     @property

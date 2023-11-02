@@ -15,7 +15,7 @@ from typing import (
 
 from bluesky.protocols import (
     Asset,
-    Collectable,
+    # Collectable,
     Descriptor,
     Flyable,
     HasHints,
@@ -169,7 +169,7 @@ class HardwareTriggeredFlyable(
     Movable,
     Stageable,
     Flyable,
-    Collectable,
+    # Collectable,
     WritesExternalAssets,
     HasHints,
     Generic[T],
