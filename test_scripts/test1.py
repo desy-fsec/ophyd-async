@@ -4,7 +4,7 @@ from tango import AttrQuality, AttrDataFormat, AttrWriteType, DeviceProxy, DevSt
 from tango.server import Device, attribute, command
 from tango.test_context import MultiDeviceTestContext
 
-from ophyd_async.tango.device import TangoStandardReadableDevice, ReadableSignal
+from ophyd_async.tango import TangoReadableDevice, tango_signal_r
 
 import numpy as np
 import numpy.typing as npt
@@ -21,7 +21,7 @@ class TestDevice(Device):
     _limitedvalue = 3
 
     @attribute(dtype=int)
-    def justvalue(self):
+    def just_a_value(self):
         return 5
 
     @attribute(dtype=float, access=AttrWriteType.READ_WRITE,
@@ -47,19 +47,41 @@ def tango_test_device():
         yield context.get_device("test/device/1")
 
 
+### ophyd device
+
+class TestReadableDevice(TangoReadableDevice):
+
+    def __init__(self, trl: str, name="") -> None:
+        TangoReadableDevice.__init__(self, trl, name)
+        self._set_success = True
+
+    def register_signals(self):
+
+        self.just_a_value = tango_signal_r(float, self.trl + '/just_a_value', device_proxy=self.proxy)
+
+        self.set_readable_signals(read_uncached=[self.just_a_value])
+#                                        config=[self.baserate,
+#                                                self.velocity,
+#                                                self.acceleration,
+#                                                self.deceleration])
+        
+        self._state = tango_signal_r(DevState, self.trl + '/State', self.proxy)
+
 
 ### ....... below a simple dem script, trying to use a tango ophyd device in bluesky plan ... 
 ### ... best to run with ipython -i
 
 
-for tango_dev in tango_test_device():
-    print(tango_dev.justvalue)
 
-    #TODO: transfor mit ophyd-tango
-    class TestReadableDevice(TangoStandardReadableDevice):
-        justvalue: ReadableSignal[int]
-        array: ReadableSignal[npt.NDArray[float]]
-        limitedvalue: ReadableSignal[float]
+
+
+
+
+for tango_dev in tango_test_device():
+    print(tango_dev.just_a_value)
+
+    # --------------------------------------------------------------------
+
 
     ophyd_dev= TestReadableDevice(tango_dev)
 
