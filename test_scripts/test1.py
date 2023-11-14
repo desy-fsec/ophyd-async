@@ -1,9 +1,11 @@
 #run with ipython -i
+import asyncio
 
 from tango import AttrQuality, AttrDataFormat, AttrWriteType, DeviceProxy, DevState, CmdArgType
 from tango.server import Device, attribute, command
 from tango.test_context import MultiDeviceTestContext
 
+from ophyd_async.core import DeviceCollector
 from ophyd_async.tango import TangoReadableDevice, tango_signal_r
 
 import numpy as np
@@ -44,7 +46,7 @@ class TestDevice(Device):
 def tango_test_device():
     with MultiDeviceTestContext(
             [{"class": TestDevice, "devices": [{"name": "test/device/1"}]}], process=True) as context:
-        yield context.get_device("test/device/1")
+        yield context.get_device_access("test/device/1")
 
 
 ### ophyd device
@@ -57,7 +59,7 @@ class TestReadableDevice(TangoReadableDevice):
 
     def register_signals(self):
 
-        self.just_a_value = tango_signal_r(float, self.trl + '/just_a_value', device_proxy=self.proxy)
+        self.just_a_value = tango_signal_r(int, self.trl + '/just_a_value', device_proxy=self.proxy)
 
         self.set_readable_signals(read_uncached=[self.just_a_value])
 #                                        config=[self.baserate,
@@ -73,18 +75,21 @@ class TestReadableDevice(TangoReadableDevice):
 
 
 
+async def main():
+    for tango_dev in tango_test_device():
+
+        # --------------------------------------------------------------------
+
+        async with DeviceCollector():
+            ophyd_dev = await TestReadableDevice(tango_dev)
+
+        print(ophyd_dev.just_a_value)
+
+        #now lets do some bluesky stuff
+        RE = RunEngine()
+        print("####mv ",RE(bps.rd(ophyd_dev)))
 
 
 
-
-for tango_dev in tango_test_device():
-    print(tango_dev.just_a_value)
-
-    # --------------------------------------------------------------------
-
-
-    ophyd_dev= TestReadableDevice(tango_dev)
-
-    #now lets do some bluesky stuff
-    RE = RunEngine()
-    print("####mv ",RE(bps.rd(ophyd_dev)))
+if __name__ == "__main__":
+    asyncio.run(main())
