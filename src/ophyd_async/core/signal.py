@@ -226,9 +226,12 @@ class SignalRW(SignalR[T], SignalW[T], Locatable):
 class SignalX(Signal):
     """Signal that puts the default value"""
 
-    async def execute(self, wait=True, timeout=None):
-        """Execute the action and return a status saying when it's done"""
-        await self._backend.put(None, wait=wait, timeout=timeout or self._timeout)
+    def trigger(self, wait=True, timeout=USE_DEFAULT_TIMEOUT) -> AsyncStatus:
+        """Trigger the action and return a status saying when it's done"""
+        if timeout is USE_DEFAULT_TIMEOUT:
+            timeout = self._timeout
+        coro = self._backend.put(None, wait=wait, timeout=timeout)
+        return AsyncStatus(coro)
 
 
 def set_sim_value(signal: Signal[T], value: T):
@@ -340,7 +343,7 @@ async def set_and_wait_for_value(
 
     Useful for busy record, or other Signals with pattern:
 
-    - Set Signal with wait=with_callback and stash the Status
+    - Set Signal with wait=True and stash the Status
     - Read the same Signal to check the operation has started
     - Return the Status so calling code can wait for operation to complete
 
@@ -354,8 +357,6 @@ async def set_and_wait_for_value(
         The signal to set and monitor
     value:
         The value to set it to
-    with_callback:
-        If we want to wait for a caput/pvput callback
     timeout:
         How long to wait for the signal to have the value
     status_timeout:

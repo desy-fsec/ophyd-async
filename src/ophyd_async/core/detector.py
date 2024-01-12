@@ -18,7 +18,7 @@ from bluesky.protocols import (
 from .async_status import AsyncStatus
 from .device import Device
 from .signal import SignalR
-from .utils import merge_gathered_dicts
+from .utils import DEFAULT_TIMEOUT, merge_gathered_dicts
 
 
 class DetectorTrigger(str, Enum):
@@ -40,8 +40,8 @@ class DetectorControl(ABC):
     @abstractmethod
     async def arm(
         self,
+        num: int,
         trigger: DetectorTrigger = DetectorTrigger.internal,
-        num: int = 0,
         exposure: Optional[float] = None,
     ) -> AsyncStatus:
         """Arm the detector and return AsyncStatus.
@@ -68,7 +68,9 @@ class DetectorWriter(ABC):
         """
 
     @abstractmethod
-    async def wait_for_index(self, index: int) -> None:
+    async def wait_for_index(
+        self, index: int, timeout: Optional[float] = DEFAULT_TIMEOUT
+    ) -> None:
         """Wait until a specific index is ready to be collected"""
 
     @abstractmethod
@@ -108,6 +110,7 @@ class StandardDetector(
         writer: DetectorWriter,
         config_sigs: Sequence[SignalR] = (),
         name: str = "",
+        writer_timeout: float = DEFAULT_TIMEOUT,
     ) -> None:
         """
         Parameters
@@ -123,6 +126,7 @@ class StandardDetector(
         self._writer = writer
         self._describe: Dict[str, Descriptor] = {}
         self._config_sigs = list(config_sigs)
+        self._frame_writing_timeout = writer_timeout
         super().__init__(name)
 
     @property
@@ -169,12 +173,17 @@ class StandardDetector(
     async def trigger(self) -> None:
         """Arm the detector and wait for it to finish."""
         indices_written = await self.writer.get_indices_written()
-        written_status = await self.controller.arm(DetectorTrigger.internal, num=1)
+        written_status = await self.controller.arm(
+            num=1,
+            trigger=DetectorTrigger.internal,
+        )
         await written_status
-        await self.writer.wait_for_index(indices_written + 1)
+        await self.writer.wait_for_index(
+            indices_written + 1, timeout=self._frame_writing_timeout
+        )
 
     async def read(self) -> Dict[str, Reading]:
-        """Unused method: will be deprecated."""
+        """Read the detector"""
         # All data is in StreamResources, not Events, so nothing to output here
         return {}
 

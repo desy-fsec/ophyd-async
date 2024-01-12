@@ -1,7 +1,7 @@
 Ophyd Async
 ===========
 
-|build_status| |coverage| |pypi_version| |license|
+|code_ci| |docs_ci| |coverage| |pypi_version| |license|
 
 Asynchronous device abstraction framework, building on `Ophyd`_.
 
@@ -35,16 +35,20 @@ NOTE: ophyd-async is included on a provisional basis until the v1.0 release.
 
 See the tutorials for usage examples.
 
-.. |build_status| image:: https://github.com/bluesky/ophyd/workflows/Unit%20Tests/badge.svg?branch=master
-    :target: https://github.com/bluesky/ophyd/actions?query=workflow%3A%22Unit+Tests%22
-    :alt: Build Status
+.. |code_ci| image:: https://github.com/bluesky/ophyd-async/actions/workflows/code.yml/badge.svg?branch=main
+    :target: https://github.com/bluesky/ophyd-async/actions/workflows/code.yml
+    :alt: Code CI
 
-.. |coverage| image:: https://codecov.io/gh/bluesky/ophyd/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/bluesky/ophyd
+.. |docs_ci| image:: https://github.com/bluesky/ophyd-async/actions/workflows/docs.yml/badge.svg?branch=main
+    :target: https://github.com/bluesky/ophyd-async/actions/workflows/docs.yml
+    :alt: Docs CI
+
+.. |coverage| image:: https://codecov.io/gh/bluesky/ophyd-async/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/bluesky/ophyd-async
     :alt: Test Coverage
 
-.. |pypi_version| image:: https://img.shields.io/pypi/v/ophyd.svg
-    :target: https://pypi.org/project/ophyd
+.. |pypi_version| image:: https://img.shields.io/pypi/v/ophyd-async.svg
+    :target: https://pypi.org/project/ophyd-async
     :alt: Latest PyPI version
 
 .. |license| image:: https://img.shields.io/badge/License-BSD%203--Clause-blue.svg

@@ -42,6 +42,7 @@ class HDFWriter(DetectorWriter):
         self._file = None
         info = self._directory_provider()
         await asyncio.gather(
+            self.hdf.num_extra_dims.set(0),
             self.hdf.lazy_open.set(True),
             self.hdf.swmr_mode.set(True),
             self.hdf.file_path.set(info.directory_path),
@@ -63,7 +64,9 @@ class HDFWriter(DetectorWriter):
         self._multiplier = multiplier
         outer_shape = (multiplier,) if multiplier > 1 else ()
         # Add the main data
-        self._datasets = [_HDFDataset(name, "/entry/data", detector_shape, multiplier)]
+        self._datasets = [
+            _HDFDataset(name, "/entry/data/data", detector_shape, multiplier)
+        ]
         # And all the scalar datasets
         for ds_name, ds_path in self._scalar_datasets_paths.items():
             self._datasets.append(
@@ -85,12 +88,14 @@ class HDFWriter(DetectorWriter):
         }
         return describe
 
-    async def wait_for_index(self, index: int):
+    async def wait_for_index(
+        self, index: int, timeout: Optional[float] = DEFAULT_TIMEOUT
+    ):
         def matcher(value: int) -> bool:
             return value // self._multiplier >= index
 
         matcher.__name__ = f"index_at_least_{index}"
-        await wait_for_value(self.hdf.num_captured, matcher, timeout=None)
+        await wait_for_value(self.hdf.num_captured, matcher, timeout=timeout)
 
     async def get_indices_written(self) -> int:
         num_captured = await self.hdf.num_captured.get_value()
