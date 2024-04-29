@@ -22,6 +22,8 @@ ophyd\_async.core.StandardReadable
    .. autosummary::
       :nosignatures:
    
+      ~StandardReadable.add_children_as_readables
+      ~StandardReadable.add_readables
       ~StandardReadable.children
       ~StandardReadable.connect
       ~StandardReadable.describe
@@ -41,6 +43,7 @@ ophyd\_async.core.StandardReadable
 
    .. autosummary::
    
+      ~StandardReadable.hints
       ~StandardReadable.name
       ~StandardReadable.parent
    

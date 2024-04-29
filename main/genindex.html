@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; ophyd-async 0.1.dev507+g28710fc documentation</title>
+    <title>Index &#8212; ophyd-async 0.1.dev510+gec4e61d documentation</title>
   
   
   
@@ -38,7 +38,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="_static/documentation_options.js?v=f63e6175"></script>
+    <script src="_static/documentation_options.js?v=0b81108d"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -504,6 +504,10 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="generated/ophyd_async.core.walk_rw_signals.html">ophyd_async.core.walk_rw_signals</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ophyd_async.core.load_device.html">ophyd_async.core.load_device</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ophyd_async.core.save_device.html">ophyd_async.core.save_device</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ophyd_async.core.assert_reading.html">ophyd_async.core.assert_reading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ophyd_async.core.assert_value.html">ophyd_async.core.assert_value</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ophyd_async.core.assert_configuration.html">ophyd_async.core.assert_configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ophyd_async.core.assert_emitted.html">ophyd_async.core.assert_emitted</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ophyd_async.core.SignalBackend.html">ophyd_async.core.SignalBackend</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ophyd_async.core.SimSignalBackend.html">ophyd_async.core.SimSignalBackend</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ophyd_async.core.DetectorControl.html">ophyd_async.core.DetectorControl</a></li>
@@ -525,6 +529,8 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="generated/ophyd_async.core.ShapeProvider.html">ophyd_async.core.ShapeProvider</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ophyd_async.core.StaticDirectoryProvider.html">ophyd_async.core.StaticDirectoryProvider</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ophyd_async.core.StandardReadable.html">ophyd_async.core.StandardReadable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ophyd_async.core.ConfigSignal.html">ophyd_async.core.ConfigSignal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/ophyd_async.core.HintedSignal.html">ophyd_async.core.HintedSignal</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ophyd_async.core.TriggerInfo.html">ophyd_async.core.TriggerInfo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ophyd_async.core.TriggerLogic.html">ophyd_async.core.TriggerLogic</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/ophyd_async.core.HardwareTriggeredFlyable.html">ophyd_async.core.HardwareTriggeredFlyable</a></li>
@@ -717,12 +723,40 @@ document.write(`
 </li>
       <li><a href="generated/ophyd_async.core.AsyncStatus.html#ophyd_async.core.AsyncStatus.add_callback">add_callback() (ophyd_async.core.AsyncStatus method)</a>
 </li>
+      <li><a href="generated/ophyd_async.core.StandardReadable.html#ophyd_async.core.StandardReadable.add_children_as_readables">add_children_as_readables() (ophyd_async.core.StandardReadable method)</a>
+
+      <ul>
+        <li><a href="generated/ophyd_async.epics.areadetector.SingleTriggerDet.html#ophyd_async.epics.areadetector.SingleTriggerDet.add_children_as_readables">(ophyd_async.epics.areadetector.SingleTriggerDet method)</a>
+</li>
+        <li><a href="generated/ophyd_async.epics.demo.Mover.html#ophyd_async.epics.demo.Mover.add_children_as_readables">(ophyd_async.epics.demo.Mover method)</a>
+</li>
+        <li><a href="generated/ophyd_async.epics.demo.Sensor.html#ophyd_async.epics.demo.Sensor.add_children_as_readables">(ophyd_async.epics.demo.Sensor method)</a>
+</li>
+        <li><a href="generated/ophyd_async.epics.demo.SensorGroup.html#ophyd_async.epics.demo.SensorGroup.add_children_as_readables">(ophyd_async.epics.demo.SensorGroup method)</a>
+</li>
+        <li><a href="generated/ophyd_async.epics.motion.Motor.html#ophyd_async.epics.motion.Motor.add_children_as_readables">(ophyd_async.epics.motion.Motor method)</a>
+</li>
+      </ul></li>
       <li><a href="generated/ophyd_async.epics.areadetector.NDAttributesXML.html#ophyd_async.epics.areadetector.NDAttributesXML.add_epics_pv">add_epics_pv() (ophyd_async.epics.areadetector.NDAttributesXML method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/ophyd_async.epics.areadetector.NDAttributesXML.html#ophyd_async.epics.areadetector.NDAttributesXML.add_param">add_param() (ophyd_async.epics.areadetector.NDAttributesXML method)</a>
 </li>
+      <li><a href="generated/ophyd_async.core.StandardReadable.html#ophyd_async.core.StandardReadable.add_readables">add_readables() (ophyd_async.core.StandardReadable method)</a>
+
+      <ul>
+        <li><a href="generated/ophyd_async.epics.areadetector.SingleTriggerDet.html#ophyd_async.epics.areadetector.SingleTriggerDet.add_readables">(ophyd_async.epics.areadetector.SingleTriggerDet method)</a>
+</li>
+        <li><a href="generated/ophyd_async.epics.demo.Mover.html#ophyd_async.epics.demo.Mover.add_readables">(ophyd_async.epics.demo.Mover method)</a>
+</li>
+        <li><a href="generated/ophyd_async.epics.demo.Sensor.html#ophyd_async.epics.demo.Sensor.add_readables">(ophyd_async.epics.demo.Sensor method)</a>
+</li>
+        <li><a href="generated/ophyd_async.epics.demo.SensorGroup.html#ophyd_async.epics.demo.SensorGroup.add_readables">(ophyd_async.epics.demo.SensorGroup method)</a>
+</li>
+        <li><a href="generated/ophyd_async.epics.motion.Motor.html#ophyd_async.epics.motion.Motor.add_readables">(ophyd_async.epics.motion.Motor method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/ophyd_async.epics.areadetector.AravisDetector.html#ophyd_async.epics.areadetector.AravisDetector">AravisDetector (class in ophyd_async.epics.areadetector)</a>
 </li>
       <li><a href="generated/ophyd_async.panda.PcapBlock.html#ophyd_async.panda.PcapBlock.arm">arm (ophyd_async.panda.PcapBlock attribute)</a>
@@ -733,6 +767,14 @@ document.write(`
         <li><a href="generated/ophyd_async.panda.PandaPcapController.html#ophyd_async.panda.PandaPcapController.arm">(ophyd_async.panda.PandaPcapController method)</a>
 </li>
       </ul></li>
+      <li><a href="generated/ophyd_async.core.assert_configuration.html#ophyd_async.core.assert_configuration">assert_configuration() (in module ophyd_async.core)</a>
+</li>
+      <li><a href="generated/ophyd_async.core.assert_emitted.html#ophyd_async.core.assert_emitted">assert_emitted() (in module ophyd_async.core)</a>
+</li>
+      <li><a href="generated/ophyd_async.core.assert_reading.html#ophyd_async.core.assert_reading">assert_reading() (in module ophyd_async.core)</a>
+</li>
+      <li><a href="generated/ophyd_async.core.assert_value.html#ophyd_async.core.assert_value">assert_value() (in module ophyd_async.core)</a>
+</li>
       <li><a href="generated/ophyd_async.core.AsyncStatus.html#ophyd_async.core.AsyncStatus">AsyncStatus (class in ophyd_async.core)</a>
 </li>
   </ul></td>
@@ -917,6 +959,8 @@ document.write(`
         <li><a href="generated/ophyd_async.panda.HDFPanda.html#ophyd_async.panda.HDFPanda.complete">(ophyd_async.panda.HDFPanda method)</a>
 </li>
       </ul></li>
+      <li><a href="generated/ophyd_async.core.ConfigSignal.html#ophyd_async.core.ConfigSignal">ConfigSignal (class in ophyd_async.core)</a>
+</li>
       <li><a href="generated/ophyd_async.core.Device.html#ophyd_async.core.Device.connect">connect() (ophyd_async.core.Device method)</a>
 
       <ul>
@@ -1039,9 +1083,11 @@ document.write(`
 </li>
       <li><a href="generated/ophyd_async.epics.demo.demo_ad_sim_detector.DemoADSimDetector.html#ophyd_async.epics.demo.demo_ad_sim_detector.DemoADSimDetector">DemoADSimDetector (class in ophyd_async.epics.demo.demo_ad_sim_detector)</a>
 </li>
-      <li><a href="generated/ophyd_async.core.SignalR.html#ophyd_async.core.SignalR.describe">describe() (ophyd_async.core.SignalR method)</a>
+      <li><a href="generated/ophyd_async.core.HintedSignal.html#ophyd_async.core.HintedSignal.describe">describe() (ophyd_async.core.HintedSignal method)</a>
 
       <ul>
+        <li><a href="generated/ophyd_async.core.SignalR.html#ophyd_async.core.SignalR.describe">(ophyd_async.core.SignalR method)</a>
+</li>
         <li><a href="generated/ophyd_async.core.SignalRW.html#ophyd_async.core.SignalRW.describe">(ophyd_async.core.SignalRW method)</a>
 </li>
         <li><a href="generated/ophyd_async.core.StandardDetector.html#ophyd_async.core.StandardDetector.describe">(ophyd_async.core.StandardDetector method)</a>
@@ -1081,9 +1127,11 @@ document.write(`
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/ophyd_async.core.HardwareTriggeredFlyable.html#ophyd_async.core.HardwareTriggeredFlyable.describe_configuration">describe_configuration() (ophyd_async.core.HardwareTriggeredFlyable method)</a>
+      <li><a href="generated/ophyd_async.core.ConfigSignal.html#ophyd_async.core.ConfigSignal.describe_configuration">describe_configuration() (ophyd_async.core.ConfigSignal method)</a>
 
       <ul>
+        <li><a href="generated/ophyd_async.core.HardwareTriggeredFlyable.html#ophyd_async.core.HardwareTriggeredFlyable.describe_configuration">(ophyd_async.core.HardwareTriggeredFlyable method)</a>
+</li>
         <li><a href="generated/ophyd_async.core.StandardDetector.html#ophyd_async.core.StandardDetector.describe_configuration">(ophyd_async.core.StandardDetector method)</a>
 </li>
         <li><a href="generated/ophyd_async.core.StandardReadable.html#ophyd_async.core.StandardReadable.describe_configuration">(ophyd_async.core.StandardReadable method)</a>
@@ -1357,16 +1405,30 @@ document.write(`
 </li>
       <li><a href="generated/ophyd_async.panda.DataBlock.html#ophyd_async.panda.DataBlock.hdf_file_name">hdf_file_name (ophyd_async.panda.DataBlock attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/ophyd_async.panda.HDFPanda.html#ophyd_async.panda.HDFPanda">HDFPanda (class in ophyd_async.panda)</a>
 </li>
       <li><a href="generated/ophyd_async.epics.demo.EnergyMode.html#ophyd_async.epics.demo.EnergyMode.high">high (ophyd_async.epics.demo.EnergyMode attribute)</a>
 </li>
-      <li><a href="generated/ophyd_async.epics.areadetector.AravisDetector.html#ophyd_async.epics.areadetector.AravisDetector.hints">hints (ophyd_async.epics.areadetector.AravisDetector property)</a>
+      <li><a href="generated/ophyd_async.core.HintedSignal.html#ophyd_async.core.HintedSignal">HintedSignal (class in ophyd_async.core)</a>
+</li>
+      <li><a href="generated/ophyd_async.core.HintedSignal.html#ophyd_async.core.HintedSignal.hints">hints (ophyd_async.core.HintedSignal property)</a>
 
       <ul>
+        <li><a href="generated/ophyd_async.core.StandardReadable.html#ophyd_async.core.StandardReadable.hints">(ophyd_async.core.StandardReadable property)</a>
+</li>
+        <li><a href="generated/ophyd_async.epics.areadetector.AravisDetector.html#ophyd_async.epics.areadetector.AravisDetector.hints">(ophyd_async.epics.areadetector.AravisDetector property)</a>
+</li>
         <li><a href="generated/ophyd_async.epics.areadetector.PilatusDetector.html#ophyd_async.epics.areadetector.PilatusDetector.hints">(ophyd_async.epics.areadetector.PilatusDetector property)</a>
+</li>
+        <li><a href="generated/ophyd_async.epics.areadetector.SingleTriggerDet.html#ophyd_async.epics.areadetector.SingleTriggerDet.hints">(ophyd_async.epics.areadetector.SingleTriggerDet property)</a>
+</li>
+        <li><a href="generated/ophyd_async.epics.demo.Mover.html#ophyd_async.epics.demo.Mover.hints">(ophyd_async.epics.demo.Mover property)</a>
+</li>
+        <li><a href="generated/ophyd_async.epics.demo.Sensor.html#ophyd_async.epics.demo.Sensor.hints">(ophyd_async.epics.demo.Sensor property)</a>
+</li>
+        <li><a href="generated/ophyd_async.epics.demo.SensorGroup.html#ophyd_async.epics.demo.SensorGroup.hints">(ophyd_async.epics.demo.SensorGroup property)</a>
+</li>
+        <li><a href="generated/ophyd_async.epics.motion.Motor.html#ophyd_async.epics.motion.Motor.hints">(ophyd_async.epics.motion.Motor property)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -1795,6 +1857,8 @@ document.write(`
 </li>
         <li><a href="generated/ophyd_async.core.HardwareTriggeredFlyable.html#ophyd_async.core.HardwareTriggeredFlyable.name">(ophyd_async.core.HardwareTriggeredFlyable property)</a>
 </li>
+        <li><a href="generated/ophyd_async.core.HintedSignal.html#ophyd_async.core.HintedSignal.name">(ophyd_async.core.HintedSignal property)</a>
+</li>
         <li><a href="generated/ophyd_async.core.Signal.html#ophyd_async.core.Signal.name">(ophyd_async.core.Signal property)</a>
 </li>
         <li><a href="generated/ophyd_async.core.SignalR.html#ophyd_async.core.SignalR.name">(ophyd_async.core.SignalR property)</a>
@@ -2180,9 +2244,11 @@ document.write(`
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="generated/ophyd_async.core.SignalR.html#ophyd_async.core.SignalR.read">read() (ophyd_async.core.SignalR method)</a>
+      <li><a href="generated/ophyd_async.core.HintedSignal.html#ophyd_async.core.HintedSignal.read">read() (ophyd_async.core.HintedSignal method)</a>
 
       <ul>
+        <li><a href="generated/ophyd_async.core.SignalR.html#ophyd_async.core.SignalR.read">(ophyd_async.core.SignalR method)</a>
+</li>
         <li><a href="generated/ophyd_async.core.SignalRW.html#ophyd_async.core.SignalRW.read">(ophyd_async.core.SignalRW method)</a>
 </li>
         <li><a href="generated/ophyd_async.core.StandardDetector.html#ophyd_async.core.StandardDetector.read">(ophyd_async.core.StandardDetector method)</a>
@@ -2208,9 +2274,11 @@ document.write(`
         <li><a href="generated/ophyd_async.panda.HDFPanda.html#ophyd_async.panda.HDFPanda.read">(ophyd_async.panda.HDFPanda method)</a>
 </li>
       </ul></li>
-      <li><a href="generated/ophyd_async.core.HardwareTriggeredFlyable.html#ophyd_async.core.HardwareTriggeredFlyable.read_configuration">read_configuration() (ophyd_async.core.HardwareTriggeredFlyable method)</a>
+      <li><a href="generated/ophyd_async.core.ConfigSignal.html#ophyd_async.core.ConfigSignal.read_configuration">read_configuration() (ophyd_async.core.ConfigSignal method)</a>
 
       <ul>
+        <li><a href="generated/ophyd_async.core.HardwareTriggeredFlyable.html#ophyd_async.core.HardwareTriggeredFlyable.read_configuration">(ophyd_async.core.HardwareTriggeredFlyable method)</a>
+</li>
         <li><a href="generated/ophyd_async.core.StandardDetector.html#ophyd_async.core.StandardDetector.read_configuration">(ophyd_async.core.StandardDetector method)</a>
 </li>
         <li><a href="generated/ophyd_async.core.StandardReadable.html#ophyd_async.core.StandardReadable.read_configuration">(ophyd_async.core.StandardReadable method)</a>
@@ -2816,6 +2884,8 @@ document.write(`
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/ophyd_async.core.HintedSignal.html#ophyd_async.core.HintedSignal.uncached">uncached() (ophyd_async.core.HintedSignal class method)</a>
+</li>
       <li><a href="generated/ophyd_async.core.HardwareTriggeredFlyable.html#ophyd_async.core.HardwareTriggeredFlyable.unstage">unstage() (ophyd_async.core.HardwareTriggeredFlyable method)</a>
 
       <ul>

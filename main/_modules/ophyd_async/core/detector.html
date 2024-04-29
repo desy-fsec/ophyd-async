@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ophyd_async.core.detector &#8212; ophyd-async 0.1.dev507+g28710fc documentation</title>
+    <title>ophyd_async.core.detector &#8212; ophyd-async 0.1.dev510+gec4e61d documentation</title>
   
   
   
@@ -38,7 +38,7 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../../_static/documentation_options.js?v=f63e6175"></script>
+    <script src="../../../_static/documentation_options.js?v=0b81108d"></script>
     <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -567,7 +567,6 @@ document.write(`
 
 <span class="kn">from</span> <span class="nn">.async_status</span> <span class="kn">import</span> <span class="n">AsyncStatus</span>
 <span class="kn">from</span> <span class="nn">.device</span> <span class="kn">import</span> <span class="n">Device</span>
-<span class="kn">from</span> <span class="nn">.signal</span> <span class="kn">import</span> <span class="n">SignalR</span>
 <span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">DEFAULT_TIMEOUT</span><span class="p">,</span> <span class="n">merge_gathered_dicts</span>
 
 <span class="n">T</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
@@ -733,7 +732,7 @@ document.write(`
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">controller</span><span class="p">:</span> <span class="n">DetectorControl</span><span class="p">,</span>
         <span class="n">writer</span><span class="p">:</span> <span class="n">DetectorWriter</span><span class="p">,</span>
-        <span class="n">config_sigs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">SignalR</span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
+        <span class="n">config_sigs</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">AsyncReadable</span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="n">writer_timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_TIMEOUT</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -789,7 +788,7 @@ document.write(`
     <span class="k">async</span> <span class="k">def</span> <span class="nf">_check_config_sigs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks configuration signals are named and connected.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">signal</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config_sigs</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">signal</span><span class="o">.</span><span class="n">_name</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">signal</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
                     <span class="s2">&quot;config signal must be named before it is passed to the detector&quot;</span>
                 <span class="p">)</span>

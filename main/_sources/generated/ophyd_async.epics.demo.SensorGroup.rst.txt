@@ -22,6 +22,8 @@ ophyd\_async.epics.demo.SensorGroup
    .. autosummary::
       :nosignatures:
    
+      ~SensorGroup.add_children_as_readables
+      ~SensorGroup.add_readables
       ~SensorGroup.children
       ~SensorGroup.connect
       ~SensorGroup.describe
@@ -41,6 +43,7 @@ ophyd\_async.epics.demo.SensorGroup
 
    .. autosummary::
    
+      ~SensorGroup.hints
       ~SensorGroup.name
       ~SensorGroup.parent
    

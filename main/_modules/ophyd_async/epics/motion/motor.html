@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ophyd_async.epics.motion.motor &#8212; ophyd-async 0.1.dev507+g28710fc documentation</title>
+    <title>ophyd_async.epics.motion.motor &#8212; ophyd-async 0.1.dev510+gec4e61d documentation</title>
   
   
   
@@ -38,7 +38,7 @@
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../../../_static/documentation_options.js?v=f63e6175"></script>
+    <script src="../../../../_static/documentation_options.js?v=0b81108d"></script>
     <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -538,7 +538,7 @@ document.write(`
 
 <span class="kn">from</span> <span class="nn">bluesky.protocols</span> <span class="kn">import</span> <span class="n">Movable</span><span class="p">,</span> <span class="n">Stoppable</span>
 
-<span class="kn">from</span> <span class="nn">ophyd_async.core</span> <span class="kn">import</span> <span class="n">AsyncStatus</span><span class="p">,</span> <span class="n">StandardReadable</span>
+<span class="kn">from</span> <span class="nn">ophyd_async.core</span> <span class="kn">import</span> <span class="n">AsyncStatus</span><span class="p">,</span> <span class="n">ConfigSignal</span><span class="p">,</span> <span class="n">HintedSignal</span><span class="p">,</span> <span class="n">StandardReadable</span>
 
 <span class="kn">from</span> <span class="nn">..signal.signal</span> <span class="kn">import</span> <span class="n">epics_signal_r</span><span class="p">,</span> <span class="n">epics_signal_rw</span><span class="p">,</span> <span class="n">epics_signal_x</span>
 
@@ -550,12 +550,16 @@ document.write(`
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># Define some signals</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_children_as_readables</span><span class="p">(</span><span class="n">ConfigSignal</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">motor_egu</span> <span class="o">=</span> <span class="n">epics_signal_r</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;.EGU&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="n">epics_signal_rw</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;.VELO&quot;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_children_as_readables</span><span class="p">(</span><span class="n">HintedSignal</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">user_readback</span> <span class="o">=</span> <span class="n">epics_signal_r</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;.RBV&quot;</span><span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">user_setpoint</span> <span class="o">=</span> <span class="n">epics_signal_rw</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;.VAL&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">user_readback</span> <span class="o">=</span> <span class="n">epics_signal_r</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;.RBV&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="n">epics_signal_rw</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;.VELO&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_velocity</span> <span class="o">=</span> <span class="n">epics_signal_r</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;.VMAX&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">acceleration_time</span> <span class="o">=</span> <span class="n">epics_signal_rw</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;.ACCL&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">motor_egu</span> <span class="o">=</span> <span class="n">epics_signal_r</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;.EGU&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">precision</span> <span class="o">=</span> <span class="n">epics_signal_r</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;.PREC&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">deadband</span> <span class="o">=</span> <span class="n">epics_signal_r</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;.RDBD&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">motor_done_move</span> <span class="o">=</span> <span class="n">epics_signal_r</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;.DMOV&quot;</span><span class="p">)</span>
@@ -565,11 +569,6 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">motor_stop</span> <span class="o">=</span> <span class="n">epics_signal_x</span><span class="p">(</span><span class="n">prefix</span> <span class="o">+</span> <span class="s2">&quot;.STOP&quot;</span><span class="p">)</span>
         <span class="c1"># Whether set() should complete successfully or not</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_success</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="c1"># Set name and signals for read() and read_configuration()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_readable_signals</span><span class="p">(</span>
-            <span class="n">read</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">user_readback</span><span class="p">],</span>
-            <span class="n">config</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">velocity</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">motor_egu</span><span class="p">],</span>
-        <span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Motor.set_name">

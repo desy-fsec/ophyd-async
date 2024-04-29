@@ -22,6 +22,8 @@ ophyd\_async.epics.motion.Motor
    .. autosummary::
       :nosignatures:
    
+      ~Motor.add_children_as_readables
+      ~Motor.add_readables
       ~Motor.children
       ~Motor.connect
       ~Motor.describe
@@ -44,6 +46,7 @@ ophyd\_async.epics.motion.Motor
 
    .. autosummary::
    
+      ~Motor.hints
       ~Motor.name
       ~Motor.parent
    

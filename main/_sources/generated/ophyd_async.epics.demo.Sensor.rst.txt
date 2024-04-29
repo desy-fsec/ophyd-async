@@ -22,6 +22,8 @@ ophyd\_async.epics.demo.Sensor
    .. autosummary::
       :nosignatures:
    
+      ~Sensor.add_children_as_readables
+      ~Sensor.add_readables
       ~Sensor.children
       ~Sensor.connect
       ~Sensor.describe
@@ -41,6 +43,7 @@ ophyd\_async.epics.demo.Sensor
 
    .. autosummary::
    
+      ~Sensor.hints
       ~Sensor.name
       ~Sensor.parent
    

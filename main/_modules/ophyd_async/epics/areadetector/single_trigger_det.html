@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ophyd_async.epics.areadetector.single_trigger_det &#8212; ophyd-async 0.1.dev507+g28710fc documentation</title>
+    <title>ophyd_async.epics.areadetector.single_trigger_det &#8212; ophyd-async 0.1.dev510+gec4e61d documentation</title>
   
   
   
@@ -38,7 +38,7 @@
 <link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../../../_static/documentation_options.js?v=f63e6175"></script>
+    <script src="../../../../_static/documentation_options.js?v=0b81108d"></script>
     <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -537,7 +537,13 @@ document.write(`
 
 <span class="kn">from</span> <span class="nn">bluesky.protocols</span> <span class="kn">import</span> <span class="n">Triggerable</span>
 
-<span class="kn">from</span> <span class="nn">ophyd_async.core</span> <span class="kn">import</span> <span class="n">AsyncStatus</span><span class="p">,</span> <span class="n">SignalR</span><span class="p">,</span> <span class="n">StandardReadable</span>
+<span class="kn">from</span> <span class="nn">ophyd_async.core</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AsyncStatus</span><span class="p">,</span>
+    <span class="n">ConfigSignal</span><span class="p">,</span>
+    <span class="n">HintedSignal</span><span class="p">,</span>
+    <span class="n">SignalR</span><span class="p">,</span>
+    <span class="n">StandardReadable</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">.drivers.ad_base</span> <span class="kn">import</span> <span class="n">ADBase</span>
 <span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">ImageMode</span>
@@ -556,12 +562,14 @@ document.write(`
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">drv</span> <span class="o">=</span> <span class="n">drv</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">plugins</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_readable_signals</span><span class="p">(</span>
-            <span class="c1"># Can&#39;t subscribe to read signals as race between monitor coming back and</span>
-            <span class="c1"># caput callback on acquire</span>
-            <span class="n">read_uncached</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">drv</span><span class="o">.</span><span class="n">array_counter</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">read_uncached</span><span class="p">),</span>
-            <span class="n">config</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">drv</span><span class="o">.</span><span class="n">acquire_time</span><span class="p">],</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_readables</span><span class="p">(</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">drv</span><span class="o">.</span><span class="n">array_counter</span><span class="p">,</span> <span class="o">*</span><span class="n">read_uncached</span><span class="p">],</span>
+            <span class="n">wrapper</span><span class="o">=</span><span class="n">HintedSignal</span><span class="o">.</span><span class="n">uncached</span><span class="p">,</span>
         <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_readables</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">drv</span><span class="o">.</span><span class="n">acquire_time</span><span class="p">],</span> <span class="n">wrapper</span><span class="o">=</span><span class="n">ConfigSignal</span><span class="p">)</span>
+
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
 
 <div class="viewcode-block" id="SingleTriggerDet.stage">

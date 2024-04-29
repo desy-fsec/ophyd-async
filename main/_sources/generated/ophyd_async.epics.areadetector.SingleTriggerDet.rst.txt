@@ -22,6 +22,8 @@ ophyd\_async.epics.areadetector.SingleTriggerDet
    .. autosummary::
       :nosignatures:
    
+      ~SingleTriggerDet.add_children_as_readables
+      ~SingleTriggerDet.add_readables
       ~SingleTriggerDet.children
       ~SingleTriggerDet.connect
       ~SingleTriggerDet.describe
@@ -42,6 +44,7 @@ ophyd\_async.epics.areadetector.SingleTriggerDet
 
    .. autosummary::
    
+      ~SingleTriggerDet.hints
       ~SingleTriggerDet.name
       ~SingleTriggerDet.parent
    

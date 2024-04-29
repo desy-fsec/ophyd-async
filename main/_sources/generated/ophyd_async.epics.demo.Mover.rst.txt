@@ -22,6 +22,8 @@ ophyd\_async.epics.demo.Mover
    .. autosummary::
       :nosignatures:
    
+      ~Mover.add_children_as_readables
+      ~Mover.add_readables
       ~Mover.children
       ~Mover.connect
       ~Mover.describe
@@ -44,6 +46,7 @@ ophyd\_async.epics.demo.Mover
 
    .. autosummary::
    
+      ~Mover.hints
       ~Mover.name
       ~Mover.parent
    

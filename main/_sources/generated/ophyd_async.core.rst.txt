@@ -39,6 +39,10 @@ ophyd\_async.core
       walk_rw_signals
       load_device
       save_device
+      assert_reading
+      assert_value
+      assert_configuration
+      assert_emitted
    
    
 
@@ -72,6 +76,8 @@ ophyd\_async.core
       ShapeProvider
       StaticDirectoryProvider
       StandardReadable
+      ConfigSignal
+      HintedSignal
       TriggerInfo
       TriggerLogic
       HardwareTriggeredFlyable
