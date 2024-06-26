@@ -34,6 +34,7 @@ ophyd\_async.panda.DataBlock
 
    .. autosummary::
    
+      ~DataBlock.log
       ~DataBlock.name
       ~DataBlock.parent
       ~DataBlock.hdf_directory
@@ -42,5 +43,6 @@ ophyd\_async.panda.DataBlock
       ~DataBlock.num_captured
       ~DataBlock.capture
       ~DataBlock.flush_period
+      ~DataBlock.datasets
    
    
